@@ -1,7 +1,0 @@
-package com.appsdeveloperblog.photoapp.api.users.repositories;
-
-import org.springframework.data.repository.CrudRepository;
-
-public interface UsersRepository extends CrudRepository<T, ID> {
-
-}
