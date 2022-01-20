@@ -1,0 +1,10 @@
+package com.appsdeveloperblog.photoapp.api.gateway;
+
+import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
+
+public class AuthorizationHeaderFilter<Config> extends AbstractGatewayFilterFactory<Config> {
+	
+	public static class Config() {
+		// configuration properties
+	}
+}

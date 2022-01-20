@@ -1,0 +1,31 @@
+package com.appsdeveloperblog.photoapp.api.users.security;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+@Configuration
+@EnableWebSecurity
+public class WebSecurity extends WebSecurityConfigurerAdapter {
+	
+	private Environment env;
+	
+	public WebSecurity(Environment env) {
+		super();
+		this.env = env;
+	}
+
+
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.csrf().disable();
+
+		// http.authorizeHttpRequests().antMatchers("/users/**").permitAll();
+		// env.getProperty("192.168.2.81")
+		http.authorizeHttpRequests().antMatchers("/users/**").permitAll().anyRequest().authenticated();
+
+		http.headers().frameOptions().disable();
+	}
+}
