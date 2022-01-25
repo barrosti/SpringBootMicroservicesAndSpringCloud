@@ -32,7 +32,14 @@ public class UsersController {
 
 	@GetMapping("/status/check")
 	public String status() {
-		return "Working on port : " + env.getProperty("local.server.port");
+		StringBuilder str = new StringBuilder();
+		
+		str.append("Working on port : ")
+		.append(env.getProperty("local.server.port"))
+		.append(" , with token = ")
+		.append(env.getProperty("token.secret")); 
+		
+		return str.toString();
 	}
 
 	@PostMapping(consumes = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE }, 
