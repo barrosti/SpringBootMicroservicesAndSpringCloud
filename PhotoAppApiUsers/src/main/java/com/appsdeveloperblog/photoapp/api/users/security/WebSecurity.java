@@ -35,10 +35,24 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 		// env.getProperty("192.168.2.81")
 		// http.authorizeHttpRequests().antMatchers("/users/**").permitAll();
 		// http.authorizeHttpRequests().antMatchers("/users/**").permitAll().anyRequest().authenticated();
-		http.authorizeHttpRequests().antMatchers("/users/**")
-		.permitAll().anyRequest().authenticated()
-		.and()
-		.addFilter(getAuthenticationFilter());
+
+		/** Mine - old **/
+//		http.authorizeHttpRequests().antMatchers("/users/**")
+//		.permitAll().anyRequest().authenticated()
+//		.and()
+//		.addFilter(getAuthenticationFilter());
+		
+/** Teacher git repository **/		
+//		http.authorizeRequests().antMatchers("/**").hasIpAddress(env.getProperty("gateway.ip"))
+//		.and()
+//		.addFilter(getAuthenticationFilter());
+
+/** Comment lecture #146 **/		
+	    http.authorizeRequests()
+        .antMatchers("/users-ws/actuator/**").permitAll()
+//        .antMatchers("/**").hasIpAddress(env.getProperty("gateway.ip"))
+        .and()
+        .addFilter(getAuthenticationFilter());
 
 		http.headers().frameOptions().disable();
 	}
