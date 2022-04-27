@@ -50,9 +50,15 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 /** Comment lecture #146 **/		
 	    http.authorizeRequests()
         .antMatchers("/users-ws/actuator/**").permitAll()
+//	    .antMatchers("/**").permitAll()
 //        .antMatchers("/**").hasIpAddress(env.getProperty("gateway.ip"))
         .and()
         .addFilter(getAuthenticationFilter());
+	    
+	    // tutor git code 
+//		http.authorizeRequests().antMatchers("/**").hasIpAddress(env.getProperty("gateway.ip"))
+//		.and()
+//		.addFilter(getAuthenticationFilter());
 
 		http.headers().frameOptions().disable();
 	}
