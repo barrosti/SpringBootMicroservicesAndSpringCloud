@@ -21,6 +21,8 @@ import com.appsdeveloperblog.photoapp.api.users.repositories.UsersRepository;
 import com.appsdeveloperblog.photoapp.api.users.shared.UserDto;
 import com.appsdeveloperblog.photoapp.api.users.ui.model.AlbumResponseModel;
 
+import feign.FeignException;
+
 @Service
 public class UserServiceImpl implements UsersService {
 
@@ -103,7 +105,12 @@ public class UserServiceImpl implements UsersService {
 		*/
 		
         logger.info("Before calling albums Microservice");
-        List<AlbumResponseModel> albumsList = albumsService.getAlbums(userId);
+        List<AlbumResponseModel> albumsList = null;
+        try {
+            albumsList = albumsService.getAlbums(userId);
+        }catch (FeignException e) {
+            logger.error(e.getLocalizedMessage());
+        }
         logger.info("After calling albums Microservice");		
 		
 		userDto.setAlbums(albumsList);
