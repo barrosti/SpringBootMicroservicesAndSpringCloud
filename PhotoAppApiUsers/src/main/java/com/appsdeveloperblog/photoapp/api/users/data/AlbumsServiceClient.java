@@ -20,7 +20,7 @@ public interface AlbumsServiceClient {
 	
     default List<AlbumResponseModel> getAlbumsFallback(String id, Throwable exception) {
         System.out.println("Param="+id);
-        System.out.println("Exception took pklace: "+exception.getMessage());
+        System.out.println("Exception took place: "+exception.getMessage());
         return new ArrayList<>();
     }	
 	
